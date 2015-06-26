@@ -24,19 +24,6 @@ if ( !defined('ABSPATH') )
 	 */
 	do_action( 'in_admin_footer' );
 	?>
-	<p id="footer-left" class="alignleft">
-		<?php
-		$text = sprintf( __( 'Thank you for creating with <a href="%s">WordPress</a>.' ), __( 'https://wordpress.org/' ) );
-		/**
-		 * Filter the "Thank you" text displayed in the admin footer.
-		 *
-		 * @since 2.8.0
-		 *
-		 * @param string $text The content that will be printed.
-		 */
-		echo apply_filters( 'admin_footer_text', '<span id="footer-thankyou">' . $text . '</span>' );
-		?>
-	</p>
 	<p id="footer-upgrade" class="alignright">
 		<?php
 		/**
