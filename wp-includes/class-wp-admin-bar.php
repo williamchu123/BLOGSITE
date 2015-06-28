@@ -363,7 +363,7 @@ class WP_Admin_Bar {
 		}
 
 		?>
-		<div id="wpadminbar" class="<?php echo $class; ?>">
+		<div id="wpadminbar" class="test class admin bar mask 1<?//php echo $class; ?>">
 			<?php if ( ! is_admin() ) { ?>
 				<a class="screen-reader-shortcut" href="#wp-toolbar" tabindex="1"><?php _e( 'Skip to toolbar' ); ?></a>
 			<?php } ?>
