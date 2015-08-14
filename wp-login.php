@@ -149,7 +149,7 @@ function login_header( $title = 'Log In', $message = '', $wp_error = '' ) {
 	</head>
 	<body class="login <?php echo esc_attr( implode( ' ', $classes ) ); ?>">
 	<div id="login">
-		<h1><a href="<?php echo esc_url( $login_header_url ); ?>" title="<?php echo esc_attr( $login_header_title ); ?>" tabindex="-1"><?php bloginfo( 'name' ); ?></a></h1>
+		<h1><p><?php bloginfo( 'name' ); ?></p></h1>
 	<?php
 
 	unset( $login_header_url, $login_header_title );
@@ -365,7 +365,7 @@ function retrieve_password() {
 	$message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";
 	$message .= __('If this was a mistake, just ignore this email and nothing will happen.') . "\r\n\r\n";
 	$message .= __('To reset your password, visit the following address:') . "\r\n\r\n";
-	$message .= '<' . network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login') . ">\r\n";
+	$message .= '<' . network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login') . "\r\n";
 
 	if ( is_multisite() )
 		$blogname = $GLOBALS['current_site']->site_name;
@@ -688,6 +688,9 @@ endif;
 login_footer('user_pass');
 break;
 
+
+
+//---------------------------------------------------------------------------------------------------------------------------------------
 case 'register' :
 	if ( is_multisite() ) {
 		/**
