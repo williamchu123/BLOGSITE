@@ -2228,6 +2228,7 @@ function comment_form( $args = array(), $post_id = null ) {
 		'logged_in_as'         => '<p class="logged-in-as">' . sprintf( __( 'Logged in as <a href="%1$s">%2$s</a>. <a href="%3$s" title="Log out of this account">Log out?</a>' ), get_edit_user_link(), $user_identity, wp_logout_url( apply_filters( 'the_permalink', get_permalink( $post_id ) ) ) ) . '</p>',
 		'comment_notes_before' => '<p class="comment-notes"><span id="email-notes">' . __( 'Your email address will not be published.' ) . '</span>'. ( $req ? $required_text : '' ) . '</p>',
 		'comment_notes_after'  => '<p class="form-allowed-tags" id="form-allowed-tags">' . sprintf( __( 'You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes: %s' ), ' <code>' . allowed_tags() . '</code>' ) . '</p>',
+		'validateCode'		   => '<span>please enter code</span><p ><input type=text id="validatecode" name="validatecode"></input></p><img src="http://192.168.18.20/wp-validatecode.php" style="width:100px;height:25px;" id="code"/><a href="javascript:changeCode()">看不清，换一张</a>',
 		'id_form'              => 'commentform',
 		'id_submit'            => 'submit',
 		'class_submit'         => 'submit',
@@ -2354,7 +2355,18 @@ function comment_form( $args = array(), $post_id = null ) {
 						 */
 						echo apply_filters( 'comment_form_field_comment', $args['comment_field'] );
 						?>
-						<?php echo $args['comment_notes_after']; ?>
+						
+						<?php
+						//#RT# 
+						 //echo $args['comment_notes_after']; 
+						 echo '<script type="text/javascript">  
+    function changeCode(){  
+          
+        document.getElementById("code").src="http://192.168.18.20/wp-validatecode.php?id="+Math.random();  
+    }  
+</script> ';
+						 echo $args['validateCode'];
+						 ?>
 
 						<?php
 						$submit_button = sprintf(
