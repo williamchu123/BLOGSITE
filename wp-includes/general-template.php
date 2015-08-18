@@ -1772,6 +1772,8 @@ function delete_get_calendar_cache() {
 }
 
 /**
+ * #RT# this is not used by RT
+ * 
  * Display all of the allowed tags in HTML format with attributes.
  *
  * This is useful for displaying in the comment area, which elements and

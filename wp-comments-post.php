@@ -5,12 +5,35 @@
  * @package WordPress
  */
 
+session_start();
+
 if ( 'POST' != $_SERVER['REQUEST_METHOD'] ) {
 	header('Allow: POST');
 	header('HTTP/1.1 405 Method Not Allowed');
 	header('Content-Type: text/plain');
 	exit;
 }
+
+// if($_SESSION["validcode"] != $__POST['validatecode']){
+// 	header('Allow: validate code is not right');
+// 	header('HTTP/1.1 405 Method Not Allowed');
+// 	header('Content-Type: text/plain');
+// 	exit;
+// }
+
+if(empty($_POST['validatecode']) || $_POST['validatecode'] !== $_SESSION['validatecode']){
+	
+	echo "validate code is wrong";
+	echo "<br>this is post varible<br>";
+	var_dump($_POST);
+	echo "<br>this is session varible<br>";
+	var_dump($_SESSION);
+	
+	exit;
+}
+
+
+
 
 /** Sets up the WordPress Environment. */
 require( dirname(__FILE__) . '/wp-load.php' );
