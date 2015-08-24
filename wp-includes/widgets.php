@@ -1145,7 +1145,7 @@ function wp_unregister_widget_control($id) {
  * @return bool True, if widget sidebar was found and called. False if not found or not called.
  */
 function dynamic_sidebar($index = 1) {
-	global $wp_registered_sidebars, $wp_registered_widgets;
+	global $wp_registered_sidebars, $wp_registered_widgets,$logger;
 
 	if ( is_int($index) ) {
 		$index = "sidebar-$index";
@@ -1158,8 +1158,13 @@ function dynamic_sidebar($index = 1) {
 			}
 		}
 	}
-
+	//$logger->log(print_r($index,true),7);
 	$sidebars_widgets = wp_get_sidebars_widgets();
+	//log
+	//$logger->log(print_r($sidebars_widgets,true), 7);
+// 	$logger->log(print_r(empty( $wp_registered_sidebars[ $index ] ),true), 7);
+// 	$logger->log(print_r(empty( $sidebars_widgets[ $index ] ),true), 7);
+// 	$logger->log(print_r(is_array( $sidebars_widgets[ $index ] ),true), 7);
 	if ( empty( $wp_registered_sidebars[ $index ] ) || empty( $sidebars_widgets[ $index ] ) || ! is_array( $sidebars_widgets[ $index ] ) ) {
 		/** This action is documented in wp-includes/widgets.php */
 		do_action( 'dynamic_sidebar_before', $index, false );
@@ -1185,6 +1190,9 @@ function dynamic_sidebar($index = 1) {
 	$sidebar = $wp_registered_sidebars[$index];
 
 	$did_one = false;
+	//log
+// 	$logger->log(print_r($sidebars_widgets[$index],true));
+// 	$logger->log(print_r($wp_registered_widgets,true));
 	foreach ( (array) $sidebars_widgets[$index] as $id ) {
 
 		if ( !isset($wp_registered_widgets[$id]) ) continue;
@@ -1414,7 +1422,7 @@ function wp_get_sidebars_widgets( $deprecated = true ) {
 	if ( $deprecated !== true )
 		_deprecated_argument( __FUNCTION__, '2.8.1' );
 
-	global $_wp_sidebars_widgets, $sidebars_widgets;
+	global $_wp_sidebars_widgets, $sidebars_widgets,$logger;
 
 	// If loading from front page, consult $_wp_sidebars_widgets rather than options
 	// to see if wp_convert_widget_settings() has made manipulations in memory.
@@ -1437,6 +1445,7 @@ function wp_get_sidebars_widgets( $deprecated = true ) {
 	 *
 	 * @param array $sidebars_widgets An associative array of sidebars and their widgets.
 	 */
+// 	$logger->log(print_r($sidebars_widgets,true));
 	$sidebars_widgets = apply_filters( 'sidebars_widgets', $sidebars_widgets );
 	return $sidebars_widgets;
 }

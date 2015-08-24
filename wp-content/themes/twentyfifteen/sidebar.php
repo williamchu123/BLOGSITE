@@ -6,7 +6,8 @@
  * @subpackage Twenty_Fifteen
  * @since Twenty Fifteen 1.0
  */
-
+// global $logger;
+// $logger->log("this is in sidebar.php line 10", rt_log::DEBUG);
 if ( has_nav_menu( 'primary' ) || has_nav_menu( 'social' ) || is_active_sidebar( 'sidebar-1' )  ) : ?>
 	<div id="secondary" class="secondary">
 
@@ -35,8 +36,9 @@ if ( has_nav_menu( 'primary' ) || has_nav_menu( 'social' ) || is_active_sidebar(
 				?>
 			</nav><!-- .social-navigation -->
 		<?php endif; ?>
-
+		
 		<?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
+		
 			<div id="widget-area" class="widget-area" role="complementary">
 				<?php dynamic_sidebar( 'sidebar-1' ); ?>
 			</div><!-- .widget-area -->

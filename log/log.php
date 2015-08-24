@@ -6,7 +6,7 @@ class rt_log{
 	const DEBUG = 7;
 	const INFO = 6;
 
-	public function log($log_info,$property){
+	public function log($log_info,$property=7){
 		$log_dir = "/var/log/blog/";
 		if(!is_dir($dir)){
 			//need modify umask to 0000
@@ -14,7 +14,7 @@ class rt_log{
 		}
 		$log_file = date("Ymd").".log";
 		$handle=fopen($log_dir.$log_file, "a");
-		$log_info = date("Y-m-d H:i:s").self::getproperty($property).$log_info;
+		$log_info = date("Y-m-d H:i:s").self::getproperty($property).": ".$log_info."\n";
 		fwrite($handle, $log_info);
 		fclose($handle);
 	}
