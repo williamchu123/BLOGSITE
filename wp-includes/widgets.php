@@ -294,10 +294,12 @@ class WP_Widget {
 	 * }
 	 */
 	public function display_callback( $args, $widget_args = 1 ) {
+		global $logger;
 		if ( is_numeric($widget_args) )
 			$widget_args = array( 'number' => $widget_args );
 
 		$widget_args = wp_parse_args( $widget_args, array( 'number' => -1 ) );
+		$logger->log("\$widget_args: ".print_r($widget_args,true));
 		$this->_set( $widget_args['number'] );
 		$instance = $this->get_settings();
 
@@ -1246,7 +1248,8 @@ function dynamic_sidebar($index = 1) {
 		 * }
 		 */
 		$params = apply_filters( 'dynamic_sidebar_params', $params );
-
+		//log
+		//$logger->log(print_r($params,true));
 		$callback = $wp_registered_widgets[$id]['callback'];
 
 		/**
@@ -1277,6 +1280,7 @@ function dynamic_sidebar($index = 1) {
 		do_action( 'dynamic_sidebar', $wp_registered_widgets[ $id ] );
 
 		if ( is_callable($callback) ) {
+			//$logger->log("this is callback method: ".print_r($callback,true));
 			call_user_func_array($callback, $params);
 			$did_one = true;
 		}
