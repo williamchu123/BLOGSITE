@@ -8,6 +8,9 @@
  * @package WordPress
  */
 
+
+require( dirname(__FILE__) . '/log/log.php');
+$logger = new rt_log;
 /** Make sure that the WordPress bootstrap has run before continuing. */
 require( dirname(__FILE__) . '/wp-load.php' );
 
