@@ -2346,17 +2346,6 @@ function comment_form( $args = array(), $post_id = null ) {
 							?>
 						<?php endif; ?>
 						<?php
-						/**
-						 * Filter the content of the comment textarea field for display.
-						 *
-						 * @since 3.0.0
-						 *
-						 * @param string $args_comment_field The content of the comment textarea field.
-						 */
-						echo apply_filters( 'comment_form_field_comment', $args['comment_field'] );
-						?>
-						
-						<?php
 						//#RT# 
 						 //echo $args['comment_notes_after']; 
 						 echo '<script type="text/javascript">  
@@ -2392,19 +2381,6 @@ function comment_form( $args = array(), $post_id = null ) {
 							$submit_button,
 							get_comment_id_fields( $post_id )
 						);
-
-						/**
-						 * Filter the submit field for the comment form to display.
-						 *
-						 * The submit field includes the submit button, hidden fields for the
-						 * comment form, and any wrapper markup.
-						 *
-						 * @since 4.2.0
-						 *
-						 * @param string $submit_field HTML markup for the submit field.
-						 * @param array  $args         Arguments passed to comment_form().
-						 */
-						echo apply_filters( 'comment_form_submit_field', $submit_field, $args );
 
 						/**
 						 * Fires at the bottom of the comment form, inside the closing </form> tag.
