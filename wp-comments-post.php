@@ -14,13 +14,6 @@ if ( 'POST' != $_SERVER['REQUEST_METHOD'] ) {
 	exit;
 }
 
-// if($_SESSION["validcode"] != $__POST['validatecode']){
-// 	header('Allow: validate code is not right');
-// 	header('HTTP/1.1 405 Method Not Allowed');
-// 	header('Content-Type: text/plain');
-// 	exit;
-// }
-
 if(empty($_POST['validatecode']) || $_POST['validatecode'] !== $_SESSION['validatecode']){
 	
 	echo "validate code is wrong";
